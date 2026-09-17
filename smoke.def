@@ -9,4 +9,13 @@ From: alpine:3.22
 
 %runscript
     cat /git-marker.txt
-    exec /bin/sh /mnt/scripts/check.sh "$@"
+
+    if [ -f /mnt/scripts/check.sh ]; then
+        exec /bin/sh /mnt/scripts/check.sh "$@"
+    fi
+
+    echo "No external check.sh provided; running default behaviour."
+    printf 'Arguments received: %s\n' "$#"
+    for arg in "$@"; do
+        printf '  %s\n' "$arg"
+    done
