@@ -1,0 +1,12 @@
+Bootstrap: docker
+From: alpine:3.22
+
+%files
+    marker.txt /git-marker.txt
+
+%post
+    mkdir -p /mnt/input /mnt/output /mnt/scripts
+
+%runscript
+    cat /git-marker.txt
+    exec /bin/sh /mnt/scripts/check.sh "$@"
