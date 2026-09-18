@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: alpine:3.22
+From: ubuntu:22.04
 
 %files
     marker.txt /git-marker.txt
